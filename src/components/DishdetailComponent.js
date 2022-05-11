@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 function RenderDish({ dish }) {
 	if (dish != null) {
 		return (
-			<div className="col-12 col-md-5 m-1">
+			<div>
 				<Card>
 					<CardImg width="100%" src={dish.image} alt={dish.name} />
 					<CardBody>
@@ -23,7 +23,7 @@ function RenderDish({ dish }) {
 function RenderComments({ comments }) {
 	if (comments != null) {
 		return (
-			<div className="col-12 col-md-5 m-1">
+			<div>
 				<h4>Comments</h4>
 				<ul className="list-unstyled">
 					{comments.map((comment) => {
