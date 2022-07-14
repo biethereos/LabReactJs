@@ -8,7 +8,7 @@ import Footer from './FooterComponent';
 import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import About from './AboutComponent';
 import { connect } from 'react-redux';
-import { postComment, fetchComments, fetchDishes, fetchPromos } from '../redux/ActionCreators';
+import { postComment, fetchComments, fetchDishes, fetchPromos, fetchLeaders, postFeedback } from '../redux/ActionCreators';
 import { actions } from 'react-redux-form';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 
@@ -34,18 +34,20 @@ const mapDispatchToProps = (dispatch) => ({
 	},
 	fetchPromos: () => {
 		dispatch(fetchPromos());
-	}
+	},
+	fetchLeaders: () => {
+		dispatch(fetchLeaders());
+	},
+	postFeedback: (feedback) => dispatch(postFeedback(feedback))
 });
 
 class Main extends Component {
-	constructor(props) {
-		super(props);
-	}
-
+	
 	componentDidMount() {
 		this.props.fetchDishes();
 		this.props.fetchComments();
 		this.props.fetchPromos();
+		this.props.fetchLeaders();
 	}
 
 	render() {
@@ -58,7 +60,9 @@ class Main extends Component {
 					promotion={this.props.promotions.promotions.filter((promo) => promo.featured)[0]}
 					promosLoading={this.props.promotions.isLoading}
 					promosErrMess={this.props.promotions.errMess}
-					leader={this.props.leaders.filter((leader) => leader.featured)[0]}
+					leader={this.props.leaders.leaders.filter((leader) => leader.featured)[0]}
+					leadersLoading={this.props.leaders.isLoading}
+					leadersErrMess={this.props.leaders.errMess}
 				/>
 			);
 		};
@@ -91,7 +95,9 @@ class Main extends Component {
 							<Route
 								exact
 								path="/contactus"
-								component={() => <Contact resetFeedbackForm={this.props.resetFeedbackForm} />}
+								component={() => <Contact postFeedback={this.props.postFeedback} 
+								resetFeedbackForm={this.props.resetFeedbackForm}
+								 />}
 							/>
 							<Redirect to="/home" />
 						</Switch>

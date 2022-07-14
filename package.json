@@ -11,6 +11,7 @@
     "cross-fetch": "^2.1.0",
     "font-awesome": "^4.7.0",
     "json-server": "^0.17.0",
+    "prop-types": "^15.6.0",
     "react": "^16.3.2",
     "react-animation-components": "^3.0.0",
     "react-dom": "^16.3.2",
@@ -38,16 +39,5 @@
       "react-app/jest"
     ]
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "browserslist": []
 }
